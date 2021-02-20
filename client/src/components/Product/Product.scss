@@ -1,0 +1,46 @@
+.product-card{
+  text-align: center;
+  .disccount {
+    width: 30px;
+    height: 30px;
+    background: red;
+    color: white;
+    border-radius: 30px;
+    font-size: 10px;
+    text-align: center;
+    float: right;
+  }
+  
+  .disccount-value {
+    margin-top: 5px !important;
+  }
+  
+  .price-reference {
+    text-align: center;
+    font-size: 10px;
+    margin-top: 5px;
+    color: #999;
+  }
+  
+  .card-img-top {
+    width: 85px !important;
+    height: 85px !important;
+    margin: 15px auto !important;
+  }
+  .product-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .mt-15 {
+    margin-top: 15px;
+  }
+  
+  .btn-buy {
+    background-color: #e4b138 !important;
+    border-color: #e4b138 !important;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+}

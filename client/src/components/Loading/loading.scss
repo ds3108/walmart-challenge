@@ -1,0 +1,41 @@
+.loading{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.circle {
+    border-radius: 50%;
+    background-color: #FF9500;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    opacity: 0;
+    animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+  }
+
+
+  .circle-layer:nth-child(1){
+    animation-delay: -2s
+  }
+
+  .circle-layer:nth-child(2){
+    animation-delay: -1s
+  }
+  .circle-layer:nth-child(3){
+    animation-delay: 0s
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(.5, .5);
+      opacity: .5;
+    }
+    to {
+      transform: scale(2.5, 2.5);
+      opacity: 0;
+    }
+  }

@@ -18,3 +18,7 @@ EXPOSE 80
 
 # Run the app when the container launches
 CMD ["npm", "start"]
+
+# docker build -t ignaciods/webapp-api:20210220 .
+# docker run -it ignaciods/webapp-api:20210220
+# docker push ignaciods/webapp-api:20210220

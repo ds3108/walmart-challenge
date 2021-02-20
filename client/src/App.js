@@ -1,50 +1,64 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState, useEffect } from "react";
+import Loading from "./components/Loading/loading"
+import Navbar from "./components/Navbar/NavBar"
+import Product from "./components/Product/Product"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.scss";
+import fetchHelper from "./helpers/fetch-helper";
+import { isPalindrome, formatNumberToPrice } from "./helpers/string";
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            apiResponse: "",
-            dbResponse: ""
-        };
-    }
 
-    // Go to API and check testAPI route for a response
-    callAPI() {
-        fetch("http://localhost:9000/testAPI")
-            .then(res => res.text())
-            .then(res => this.setState({ apiResponse: res }))
-            .catch(err => err);
-    }
+const App = () => {
+    const [loading, setLoading] = useState(true);
+    const [products, setProducts] = useState([]);
 
-    // Go to API and check testDB route for a response
-    callDB() {
-        fetch("http://localhost:9000/testDB")
-            .then(res => res.text())
-            .then(res => this.setState({ dbResponse: res }))
-            .catch(err => err);
-    }
+    useEffect(async () => {
 
-    // Execute the calls when componnent mounts
-    componentDidMount() {
-        this.callAPI();
-        this.callDB();
-    }
+        const data = await fetchHelper.getInfo();
+        if (data) {
+            setProducts(data);
+            setLoading(false);
+        } else {
+            setProducts([]);
+            setLoading(false);
+        }
 
-    render() {
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">{this.state.apiResponse}</p>
-                <p className="App-intro">{this.state.dbResponse}</p>
+    }, []);
+
+    // // Go to API and check testAPI route for a response
+    // const callAPI = () => {
+    //     fetch("http://localhost:9000/testAPI")
+    //         .then(res => res.text())
+    //         .then(res => this.setState({ apiResponse: res }))
+    //         .catch(err => err);
+    // }
+
+    // // Go to API and check testDB route for a response
+    // callDB = () => {
+    //     fetch("http://localhost:9000/testDB")
+    //         .then(res => res.text())
+    //         .then(res => this.setState({ dbResponse: res }))
+    //         .catch(err => err);
+    // }
+    return (
+        <div className="App">
+           <Navbar />
+            {loading && <Loading />}
+            <div className="product-list">
+                <div className="container">
+                    <div className="row">
+
+                        {products.map((product) => (
+                            <Product  info={product}/>
+                        ))}
+
+                    </div>
+                </div>
+
             </div>
-        );
-    }
+        </div>
+    );
+
 }
 
 export default App;
