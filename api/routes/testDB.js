@@ -1,25 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const SchemaBuild = require("../schemas/product");
+const isPalindrome = (s, i) => (i = i || 0) < 0 || i >= s.length >> 1 || s[i] == s[s.length - 1 - i] && isPalindrome(s, ++i)
 
 var Schema = mongoose.Schema;
 
-    // login schema
-    var products = new Schema({
-        id: Number,
-        brand: String,
-        description: String,
-        image: String,
-        price: Number,
-    }, { collection: 'products' });
+// login schema
+var products = SchemaBuild(mongoose);
 
-    var productsModel = mongoose.model('products', products);
+var productsModel = mongoose.model('products', products);
 
 // Variable to be sent to Frontend with Database status
 let databaseConnection = "Waiting for Database response...";
 
 router.get("/", async function (req, res, next) {
-    var response = await getData();
+    const { search } = req.query;
+    var response = await getData(search);
     res.send(response);
 });
 
@@ -41,15 +38,20 @@ mongoose.connection.once("open", () => {
     databaseConnection = "Connected to Database";
 });
 
-const getData = async () => {
-    
+const getData = async (search) => {
 
+    let palindromList = [];
     try {
         const products = await productsModel.find({}).lean().limit(200).exec();
+        products.forEach((product) => {
+            if (isPalindrome(String(product.id))) palindromList.push(product);
+            if (isPalindrome(String(product.brand))) palindromList.push(product);
+            if (isPalindrome(String(product.description))) palindromList.push(product);
+        })
         return products;
-      } catch (err) {
+    } catch (err) {
         return 'error occured';
-      }
+    }
 }
 
 module.exports = router;
