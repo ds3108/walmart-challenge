@@ -1,10 +1,10 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import Error from './error'
-
-describe('Error', () => {
-  test('should render', () => {
-    const wrapper = shallow(<Error  />);
-    expect(wrapper).toMatchSnapshot();
-  })
-})
+import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import Error from './error';
+describe("<Error />", () => {
+  it("Renders <Error /> component correctly", () => {
+    const { getByText } = render(<Error />);
+    expect(getByText(/Ups, algo ha pasado../i)).toBeInTheDocument();
+  });
+});

@@ -1,10 +1,10 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import Loading from './loading'
-
-describe('Loading', () => {
-  test('should render', () => {
-    const wrapper = shallow(<Loading  />);
-    expect(wrapper).toMatchSnapshot();
-  })
-})
+import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import Loading from './loading';
+describe("<Loading />", () => {
+  it("Renders <Loading /> component correctly", () => {
+    const { getByTestId } = render(<Loading />);
+    expect(getByTestId('loading')).toBeInTheDocument();
+  });
+});

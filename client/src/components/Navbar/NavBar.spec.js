@@ -1,10 +1,10 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import NavBar from './NavBar'
-
-describe('NavBar', () => {
-  test('should render', () => {
-    const wrapper = shallow(<NavBar  />);
-    expect(wrapper).toMatchSnapshot();
-  })
-})
+import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import Navbar from './NavBar';
+describe("<Navbar />", () => {
+  it("Renders <Navbar /> component correctly", () => {
+    const { getByText } = render(<Navbar />);
+    expect(getByText(/Buscar/i)).toBeInTheDocument();
+  });
+});
