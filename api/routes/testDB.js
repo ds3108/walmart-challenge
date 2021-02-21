@@ -39,18 +39,16 @@ mongoose.connection.once("open", () => {
 });
 
 const getData = async (search) => {
-
-    let palindromList = [];
     try {
-        const products = await productsModel.find({}).lean().limit(200).exec();
-        products.forEach((product) => {
-            if (isPalindrome(String(product.id))) palindromList.push(product);
-            if (isPalindrome(String(product.brand))) palindromList.push(product);
-            if (isPalindrome(String(product.description))) palindromList.push(product);
-        })
+        const products;
+        if (isPalindrome(search)) {
+            products = await productsModel.find({ $or: [{ id: { $in: [search] } }, { brand: { $in: [search] } }, { description: { $in: [search] } }] }).lean().limit(200).exec();
+        } else {
+            products = await productsModel.find({}).lean().limit(200).exec();
+        }
         return products;
-    } catch (err) {
-        return 'error occured';
+    } catch (error) {
+        return { message:'Error retrieving data from Mongo ', error};
     }
 }
 

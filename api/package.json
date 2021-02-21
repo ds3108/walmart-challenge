@@ -1,19 +1,15 @@
 {
-  "name": "api",
-  "version": "0.0.0",
+  "name": "walmart-api",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon index.js"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.3",
+    "config": "^3.3.3",
     "cors": "^2.8.4",
-    "debug": "~2.6.9",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "jade": "~1.11.0",
     "mongoose": "^5.11.17",
-    "morgan": "^1.9.1",
     "nodemon": "^2.0.7"
   }
 }
