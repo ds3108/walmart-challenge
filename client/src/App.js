@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loading from "./components/Loading/loading"
 import Navbar from "./components/Navbar/NavBar"
 import Product from "./components/Product/Product"
+import Error from "./components/Error/error"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.scss";
 import fetchHelper from "./helpers/fetch-helper";
@@ -13,17 +14,36 @@ const App = () => {
     const [isPalyndrom, setIsPalyndrom] = useState(false);
     const [products, setProducts] = useState([]);
     const [query, setQuery] = useState("");
+    const [error, setError] = useState(null);
 
     useEffect(async () => {
-        const { results, palyndromSearch, error } = await fetchHelper.getInfo(query);
-        if (!error) {
-            setProducts(results);
-            setIsPalyndrom(palyndromSearch);
-            setLoading(false);
-        } else {
+        try {
+            setError(null);
+            const { results, palyndromSearch, error } = await fetchHelper.getInfo(query);
+            if (!error) {
+                if(results.length>0){
+                    setProducts(results);
+                    setIsPalyndrom(palyndromSearch);
+                    setLoading(false);
+                }else{
+                    setError('NO_RESULTS');
+                    setProducts([]);
+                    setIsPalyndrom(false);
+                    setLoading(false);
+                }
+                
+            } else {
+                setProducts([]);
+                setLoading(false);
+                setIsPalyndrom(false);
+            }
+        } catch (err) {
             setProducts([]);
             setLoading(false);
+            setError('CONNECTION_ERR');
         }
+        
+        
 
     }, [loading]);
 
@@ -49,6 +69,7 @@ const App = () => {
                 query={query}
             />
             {loading && <Loading />}
+            {error && <Error error={error} />}
             {!loading && <div className="product-list">
                 <div className="container">
                     <div className="row">

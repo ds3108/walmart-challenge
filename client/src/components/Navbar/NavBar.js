@@ -11,10 +11,10 @@ const NavBar = ({ onKeyPress, onChange, searchProduct,query }) => (
             <FormControl
                 onKeyPress={onKeyPress}
                 onChange={onChange}
-                type="text" placeholder="Search"
+                type="text" placeholder="¿Qué producto buscas hoy?"
                 value={query}
                 className="mr-sm-2" />
-            <Button variant="outline-light" onClick={searchProduct}>Search</Button>
+            <Button variant="outline-light" onClick={searchProduct}>Buscar</Button>
         </Form>
     </Navbar>
 

@@ -5,7 +5,7 @@
 const fetchHelper = {
     getInfo: async (query) => {
 
-      const request = await fetch(`http://localhost:9000/api/products?search=${query}`, { method: "get" });
+      const request = await fetch(`${process.env.REACT_APP_URL}/products?search=${query}`, { method: "get" });
       const result = await request.json();
       return result;
     }
