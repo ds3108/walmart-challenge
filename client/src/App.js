@@ -10,52 +10,57 @@ import { isPalindrome, formatNumberToPrice } from "./helpers/string";
 
 const App = () => {
     const [loading, setLoading] = useState(true);
+    const [isPalyndrom, setIsPalyndrom] = useState(false);
     const [products, setProducts] = useState([]);
+    const [query, setQuery] = useState("");
 
     useEffect(async () => {
-
-        const data = await fetchHelper.getInfo();
-        if (data) {
-            setProducts(data);
+        const { results, palyndromSearch, error } = await fetchHelper.getInfo(query);
+        if (!error) {
+            setProducts(results);
+            setIsPalyndrom(palyndromSearch);
             setLoading(false);
         } else {
             setProducts([]);
             setLoading(false);
         }
 
-    }, []);
+    }, [loading]);
 
-    // // Go to API and check testAPI route for a response
-    // const callAPI = () => {
-    //     fetch("http://localhost:9000/testAPI")
-    //         .then(res => res.text())
-    //         .then(res => this.setState({ apiResponse: res }))
-    //         .catch(err => err);
-    // }
 
-    // // Go to API and check testDB route for a response
-    // callDB = () => {
-    //     fetch("http://localhost:9000/testDB")
-    //         .then(res => res.text())
-    //         .then(res => this.setState({ dbResponse: res }))
-    //         .catch(err => err);
-    // }
+    const onChange = ({ target: { value } }) => setQuery(value);
+    const onKeyPress = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            searchProduct();
+        }
+    };
+    const searchProduct = () => {
+        if (!loading) {
+            setLoading(true);
+        }
+    };
     return (
         <div className="App">
-           <Navbar />
+            <Navbar
+                onChange={onChange}
+                onKeyPress={onKeyPress}
+                searchProduct={searchProduct}
+                query={query}
+            />
             {loading && <Loading />}
-            <div className="product-list">
+            {!loading && <div className="product-list">
                 <div className="container">
                     <div className="row">
 
                         {products.map((product) => (
-                            <Product  info={product}/>
+                            <Product key={product.id} info={product} isPalyndrom={isPalyndrom} />
                         ))}
 
                     </div>
                 </div>
 
-            </div>
+            </div>}
         </div>
     );
 

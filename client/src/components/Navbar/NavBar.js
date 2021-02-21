@@ -4,23 +4,18 @@ import './NavBar.scss'
 /**
     * Renders a <NavBar /> component according with the mockUp. Includes pulse animation with CSS keyframes.
     */
-const NavBar = () => (
+const NavBar = ({ onKeyPress, onChange, searchProduct,query }) => (
     <Navbar sticky="top" collapseOnSelect expand="lg">
         <Navbar.Brand href="#home"><img className="nav-logo" src="https://www.lider.cl/images/logo.svg" alt="Logo" /></Navbar.Brand>
         <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-light">Search</Button>
+            <FormControl
+                onKeyPress={onKeyPress}
+                onChange={onChange}
+                type="text" placeholder="Search"
+                value={query}
+                className="mr-sm-2" />
+            <Button variant="outline-light" onClick={searchProduct}>Search</Button>
         </Form>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-            <Nav>
-                <Nav.Link target="_blank" href="https://houm.com/cl/propietario">Hi</Nav.Link>
-                <Nav.Link target="_blank" href="https://me.houm.com/pagar">Hi</Nav.Link>
-                <Nav.Link target="_blank" href="https://houm.com/cl/partner">Hi</Nav.Link>
-                <Nav.Link target="_blank" href="https://houm.com/cl/login">Hi</Nav.Link>
-            </Nav>
-
-        </Navbar.Collapse>
     </Navbar>
 
 
