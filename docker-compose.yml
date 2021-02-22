@@ -3,18 +3,25 @@ services:
     client:
         image: mhart/alpine-node:10.23
         restart: always
+        environment:
+            - REACT_APP_URL=http://localhost:9000/api
         ports:
             - "3000:3000"
         working_dir: /client/src/app
         volumes:
             - ./client:/client/src/app
-        entrypoint: ["npm", "start"]
+        # entrypoint: ["npm", "start"]
+        command:
+            - /bin/sh
+            - -c
+            - |
+                npm rebuild node-sass && npm run start
         links:
             - api
         networks:
             - webappnetwork
     api:
-        image: ignaciods/webapp-api:20210220
+        image: ignaciods/webapp-api:2021022103
         restart: always
         ports:
             - "9000:9000"
