@@ -41,11 +41,17 @@
     width: 12px;
     height: 12px;
   }
+  .product-brand {
+    color: black;
+  }
+  .product-desc {
+    color: gray;
+  }
 
   .btn-buy {
     background-color: #e4b138 !important;
     border-color: #e4b138 !important;
     color: #fff;
-    cursor: pointer;
+    cursor: no-drop;
   }
 }

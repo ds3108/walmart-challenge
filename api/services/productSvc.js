@@ -1,14 +1,13 @@
 const productsModel = require("../models/product");
 const isPalindrome = (s, i) => (i = i || 0) < 0 || i >= s.length >> 1 || s[i] == s[s.length - 1 - i] && isPalindrome(s, ++i)
 
-function isNumeric(str) {
-    if (typeof str != "string") return false // we only process strings!  
-    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-           !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+const isNumeric = (str) => {
+    if (typeof str != "string") return false 
+    return !isNaN(str) && !isNaN(parseFloat(str)) 
   }
 /**
- * Función asíncrona que devuelve las categorías
- * @param {string} queryString Identificador de la categoría
+ * Función asíncrona que devuelve la búsqueda de MongoDB
+ * @param {string} queryString filtro de búsqueda
  */
 const getProducts = async (queryString) => {
     try {

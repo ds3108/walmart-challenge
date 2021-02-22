@@ -1,5 +1,11 @@
 .navbar {
   background: #0a79c9 !important;
+  .icon-search{
+    width: 19px;
+    height: 19px;
+    margin-left: -4%;
+    cursor:pointer;
+  }
 }
 .nav-logo {
   width: 152px;
@@ -10,5 +16,16 @@
   width: 100% !important;
   input{
     width: 80% !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .icon-search{
+    position: absolute;
+    margin-left: 80% !important;
+  }
+  .form-inline{
+    input{
+      width: 100% !important;
+    }
   }
 }

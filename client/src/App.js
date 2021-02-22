@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Loading from "./components/Loading/loading"
-import Navbar from "./components/Navbar/NavBar"
-import Product from "./components/Product/Product"
-import Error from "./components/Error/error"
+import Loading from "./components/Loading/loading";
+import Navbar from "./components/Navbar/NavBar";
+import Product from "./components/Product/Product";
+import Error from "./components/Error/error";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./App.scss";
+import "./index.scss";
 import fetchHelper from "./helpers/fetch-helper";
-import { isPalindrome, formatNumberToPrice } from "./helpers/string";
 
 
 const App = () => {
@@ -42,9 +41,6 @@ const App = () => {
             setLoading(false);
             setError('CONNECTION_ERR');
         }
-        
-        
-
     }, [loading]);
 
 
@@ -73,14 +69,11 @@ const App = () => {
             {!loading && <div className="product-list">
                 <div className="container">
                     <div className="row">
-
                         {products.map((product) => (
                             <Product key={product.id} info={product} isPalyndrom={isPalyndrom} />
                         ))}
-
                     </div>
                 </div>
-
             </div>}
         </div>
     );

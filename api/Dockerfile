@@ -17,8 +17,8 @@ COPY . /api/
 EXPOSE 80
 
 # Run the app when the container launches
-CMD ["npm", "start"]
+CMD ["npm", "start:prod"]
 
-# docker build -t ignaciods/webapp-api:20210220 .
-# docker run -it ignaciods/webapp-api:20210220
-# docker push ignaciods/webapp-api:20210220
+# docker build -t ignaciods/webapp-api:20210221 .
+# docker run -it ignaciods/webapp-api:20210221
+# docker push ignaciods/webapp-api:20210221

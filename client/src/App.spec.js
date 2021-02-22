@@ -22,10 +22,5 @@ describe("Modal", () => {
     ReactDOM.render(<App />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
-  // it(' fetching', async() => {
-  //   const response = await fetchHelper.getInfo('')
-  // console.log(response);
-  // expect(response.id).toBe(1); 
-  // });
 
 });
