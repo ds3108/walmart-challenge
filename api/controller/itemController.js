@@ -6,7 +6,7 @@ const itemSvc = require("../services/productSvc");
  */
 const getProductsController = async (req, res) => {
   let { query: { search } } = req;
-  const qs = search || "";
+  const qs = search.toLowerCase() || "";
   try {
     const response = await itemSvc.getProducts(qs);
     res.send(response);
