@@ -7,39 +7,42 @@ Proyecto para postulación activa a Walmart.
 Proyecto construido de manera unificada ( cliente (Create React Application + Node)  y servidor(( Node + Express)) en un mismo repositorio) para simular el landing page de [MercadoLibre](https://www.mercadolibre.cl/)
 ## Dependencias
 
-- Docker
+- Docker Compose 1.27.4
 - Node >= 6  (Servidor + Cliente)
-- Express (4.17.1) (Servidor)
+- Express (4.16.0) (Servidor)
 - React ( 17.0.1) ( Cliente)
 - React Scripts (4.0.2) (Cliente)
 - Boostrap (4.6.0) (Cliente)
 
 ## Levantando el proyecto local
 
-Primero vamos a generar los minificados del cliente(front),accediendo a la carpeta client e instalando dependencias de node para la la interfaz de usuario.
+Levantamos primero el back
+
+``` bash
+cd api
+npm install
+npm run start
+```
+
+Despues  abrimos otra terminal y asegurarndonos que estamos en la raíz del proyecto comenzamos a levantar el front.
 
 ``` bash
 cd client
 npm install
-```
-
-Despues volveremos a la raíz del proyecto e instalaremos las dependencias del servidor para poder levantar el proyecto.
-
-``` bash
-cd ..
-npm install
-```
-
-Y finalmente levantaremos el desafío con el comando:
-
-``` bash
 npm run start
 ```
 
-Y en su navegador favorito podemos acceder al siguiente [link](http://localhost:5000) para probar.
+Y finalmente  volviendo a la raíz ,levantamos una instancia para mongo
 
-PD: El proyecto se apertura bajo el puerto 5000
+``` bash
+make database-up
+```
+
+Y en su navegador favorito podemos acceder al siguiente [link](http://localhost:3000) para probar.
+
 ## Levantando el proyecto con Docker
+
+NOTA: Antes de levantar docker-compose asegurarse que no estan tomados los puertos 3000,9000 y 27017.
 
 En la raíz del repo,levantaremos el front, backc y la instancia de mongo con
 
@@ -48,8 +51,11 @@ docker-compose up
 ```
 Y luego haremos el fill de collecctions a mongo con
 ``` bash
-docker exec mongodb bash -c './database/import.sh’
+docker exec mongodb bash -c './database/import.sh mongodb’
 ```
+
+Ahora podemos acceder al contenedor en este [link](http://localhost:3000)
+
 ## Autor
 
 - Ignacio Aedo(ignaciods.3108@gmail.com)
