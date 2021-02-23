@@ -49,10 +49,12 @@ En la raíz del repo,levantaremos el front, backc y la instancia de mongo con
 ``` bash
 docker-compose up
 ```
-Y luego haremos el fill de collecctions a mongo con
+
+Una vez arriba el contenedor de mongo, ( mientras el servidor y el cliente instalan dependencias npm), ejecutamos.
 ``` bash
 docker exec mongodb bash -c './database/import.sh mongodb’
 ```
+para llenar la BD con datos.
 
 Ahora podemos acceder al contenedor en este [link](http://localhost:3000)
 
