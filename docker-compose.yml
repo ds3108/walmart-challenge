@@ -15,7 +15,7 @@ services:
             - /bin/sh
             - -c
             - |
-                npm rebuild node-sass && npm run start
+                npm rebuild node-sass && NODE_ENV=production npm run start
         links:
             - api
         networks:

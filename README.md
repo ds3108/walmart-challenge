@@ -21,7 +21,7 @@ Levantamos primero el back
 ``` bash
 cd api
 npm install
-npm run start
+npm run start:dev
 ```
 
 Despues  abrimos otra terminal y asegurarndonos que estamos en la raíz del proyecto comenzamos a levantar el front.
