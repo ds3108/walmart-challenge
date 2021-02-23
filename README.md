@@ -58,6 +58,12 @@ para llenar la BD con datos.
 
 Ahora podemos acceder al contenedor en este [link](http://localhost:3000)
 
+
+## CI/CD
+
+Podemos ver desplegada la solución en : https://heuristic-volhard-4d45e4.netlify.app/
 ## Autor
 
 - Ignacio Aedo(ignaciods.3108@gmail.com)
+
+
